@@ -1,18 +1,22 @@
-{{define "layout"}}
+{{ define "layout" }}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{template "title" .}}</title>
-        <link rel="stylesheet" href="static/css/register-login.css">
+        <title>{{template "title" .}} </title>
+        <link rel="stylesheet" type="text/css" href="./view/static/styles/register-login.css">
     </head>
     <body>
-        <nav>
-            <!-- Navbar here -->
-        </nav>
-        <main>{{template "content" .}}</main>
-
-    </body>
+        <div>
+            <ul id="navBar">
+                <li><a href="../pages/index.html">Home</a></li>
+                <li><a href="../pages/login.html">Log in</a></li>
+                <li><a href="?? Add logout functionality">Log out</a></li>
+                <li><a href="../pages/register.html">Register</a></li>
+                <li>This is just checking the layout template is working</li>
+              </ul>
+        </div>
+        <main>{{template "content"}}</main>
 </html>
-{{end}}
+{{ end }}

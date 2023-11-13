@@ -1,0 +1,25 @@
+package controller
+
+import(
+	"net/http"
+	"forumhub/view"
+)
+
+type Static struct {
+	Template view.Template
+}
+
+func(static Static) ServeHTTP(w http.ResponseWriter, r *http.Request){
+	// Fetch data from SQLite databasr
+	//data := fetchDataFromDatabase()
+
+	tmpl, err := view.Parse("./view/static/templates")
+	if err != nil {
+		http.Error(w, "Error parsing template", http.StatusInternalServerError)
+		return
+	}
+
+
+	//pass data to the template (replace nil with your actual data)
+	tmpl.Execute(w,nil)
+}

@@ -1,37 +1,30 @@
 package main
 
 import (
+	"fmt"
+	"forumhub/controller"
+	"forumhub/model"
 	"log"
 	"net/http"
-	"fmt"
-	"forumhub/dal"
-	"forumhub/handlers"
-	"forumhub/view"
+	//"forumhub/view"
 )
 
-func executeTemplate(w http.ResponseWriter, filepath string){
-	tmpl, err := view.Parse(filepath)
-	if err != nil{
-		http.Error(w, "There was an error parsing the template.", http.StatusInternalServerError)
-		return
-	}
-tmpl.Execute(w, nil)
-}
+
 func init() {
-	dal.InitDatabase()
+	model.InitDatabase()
 	fmt.Println("Success connected to database")
 
-	executeTemplate(w,"./static")
-	
 }
 
 func Server() {
-	fs := http.FileServer(http.Dir("static"))
+	//create a file server to handle static files
+	fs := http.FileServer(http.Dir("/view/static"))
 
 	//initialize a new servemux and register the home function as the handler for the "/" URL pattern.
 	mux := http.NewServeMux()
-	mux.Handle("/static/", http.StripPrefix("/static/", fs))
-	mux.HandleFunc("/", handlers.HomeHandler)
+	mux.Handle("/view/static/", http.StripPrefix("/view/static", fs))
+
+	mux.HandleFunc("/", controller.HomeHandler)
 
 	//Start a new web server listening on port 7000
 	log.Print("Starting server on :7001")
@@ -44,13 +37,13 @@ func Server() {
 func pathHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case "/":
-		handlers.HomeHandler(w, r)
+		controller.HomeHandler(w, r)
 	// case "/register":
 	// 	RegisterHandler(w, r)
 	// case "/login":
 	// 	LoginHandler(w, r)
 	default:
-		handlers.ErrorHandler(w, r, 404)
+		controller.ErrorHandler(w, r, 404)
 	}
 
 }
@@ -58,4 +51,5 @@ func pathHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	Server()
 	http.HandleFunc("/", pathHandler)
+
 }

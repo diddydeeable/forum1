@@ -1,12 +1,12 @@
-package handlers
+package controller
 
 import (
-	"forumhub/dal"
+//	"forumhub/dal"
 	"html/template"
 	"net/http"
 
 //	"github.com/gofrs/uuid"
-	"golang.org/x/crypto/bcrypt"
+//	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {

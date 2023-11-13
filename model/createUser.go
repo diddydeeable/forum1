@@ -1,4 +1,4 @@
-package dal
+package model
 
 import (
 	"database/sql"
@@ -14,7 +14,7 @@ func InitDB(database *sql.DB) {
 func HashPassword(password string) (string) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
-		fmt.Println(":()")
+		fmt.Println(":()") 
 	}
 	return string(bytes)
 }
@@ -22,7 +22,6 @@ func HashPassword(password string) (string) {
 // function to create a new user in the database
 func CreateUser(Username, Email, Password string) error {
 	var UserQuery string = "INSERT INTO Users(Username, Email, Password) VALUES(?,?,?)"
-
 
 	hashedPassword := HashPassword(Password)
 
