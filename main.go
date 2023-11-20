@@ -23,8 +23,7 @@ func Server() {
 	//initialize a new servemux and register the home function as the handler for the "/" URL pattern.
 	mux := http.NewServeMux()
 	mux.Handle("/view/static/", http.StripPrefix("/view/static", fs))
-
-	mux.HandleFunc("/", controller.HomeHandler)
+	mux.HandleFunc("/", pathHandler)
 
 	//Start a new web server listening on port 7000
 	log.Print("Starting server on :7001")
@@ -38,10 +37,10 @@ func pathHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case "/":
 		controller.HomeHandler(w, r)
-	// case "/register":
-	// 	RegisterHandler(w, r)
-	// case "/login":
-	// 	LoginHandler(w, r)
+	case "/register":
+		controller.RegisterHandler(w, r)
+	case "/registerauth":
+		controller.RegisterAuthHandler(w,r)
 	default:
 		controller.ErrorHandler(w, r, 404)
 	}

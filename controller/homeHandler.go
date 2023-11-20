@@ -26,7 +26,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	log.Println(myTemplate)
 
 	if err := myTemplate.ExecuteTemplate(w, "layout", nil); err != nil {
 		log.Print("error executing the template")

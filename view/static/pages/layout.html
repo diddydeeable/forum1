@@ -1,0 +1,36 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html>
+<head>
+    <!--title>{{.Title}}</title -->
+    <!-- External CSS links -->
+    <link rel="stylesheet" href="../static/styles/register-login.css">
+</head>
+<body>
+    <header>
+        <!-- Your header content goes here -->
+            <nav class="container">
+                <p>This is a friendly community for discussions and sharing knowledge.</p>
+                <a href="./index" class="btn">Home</a>
+                <a href="./createUser" class="btn">Create an Account</a>
+                <a href="./login" class="btn">Login</a>
+                <!-- Add more links or buttons as needed -->
+            </nav>
+    </header>
+
+    <main>
+        <!-- This is where the content of your individual pages will be injected -->
+        <!-- {{template "content" .}} -->
+        
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+        &copy; 2023 Huseyin Diana and Gio's Forum. All rights reserved. 
+    </footer>
+
+    <!-- External JavaScript files -->
+    <!--script src="/path/to/your/javascript"></script-->
+</body>
+</html>
+{{end}}

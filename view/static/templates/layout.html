@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{template "title" .}} </title>
+        <title>{{template "title"}} </title>
         <link rel="stylesheet" type="text/css" href="./view/static/styles/register-login.css">
     </head>
     <body>
@@ -17,6 +17,9 @@
                 <li>This is just checking the layout template is working</li>
               </ul>
         </div>
-        <main>{{template "content"}}</main>
-</html>
+       {{template "content" .}}
+        
+
+       </body>
+       </html>
 {{ end }}

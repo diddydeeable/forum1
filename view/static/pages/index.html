@@ -1,13 +1,11 @@
-{{template "layout" .}}
+{{define "content"}}
 
-{{define "title"}}
-Home
+    <div>
+     <p>INDEX LOADED CORRECTLY</p>   
+    </div>
+
 {{end}}
 
-{{define "content"}}
-<h1>Home Page</h1>
-<p>Hello {{.Posts}}!</p>
-
-
-
+{{define "title"}}
+index
 {{end}}

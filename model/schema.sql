@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Posts
     UserID INTEGER,
     Username TEXT,
     Title TEXT,
+    Category TEXT,
     Body TEXT,
     Likes INTEGER,
     Dislikes INTEGER,

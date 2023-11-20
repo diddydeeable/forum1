@@ -1,8 +1,13 @@
+{{template "layout" .}}
+
 {{define "title"}}
-About
+Home
 {{end}}
 
 {{define "content"}}
 <h1>Home Page</h1>
-<p>Hello! this is a fun place to be</p>
+<p>Hello {{.Posts}}!</p>
+
+
+
 {{end}}
