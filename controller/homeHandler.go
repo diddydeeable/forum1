@@ -14,6 +14,10 @@ import (
 
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	//check for session cookie
+
+
+	//logged on vs logged out version
 	log.Println("Home Handler hit")
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)

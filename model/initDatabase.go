@@ -17,7 +17,6 @@ func InitDatabase() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer db.Close()
 	// Read the schema.sql file
 	schema, err := os.ReadFile("./model/schema.sql")
 	if err != nil {

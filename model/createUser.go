@@ -11,6 +11,20 @@ func InitDB(database *sql.DB) {
 	db = database
 }
 
+func getUser(username string)(User, error){
+	var result User
+	stmt := "SELECT UserID FROM Users WHERE username = ?"
+	
+	row := db.QueryRow(stmt, username)
+	
+	err := row.Scan(&result.ID, &result.Username, &result.Email, &result.PasswordHash)
+	//if err, username already taken
+	if err != nil {
+		return result, err
+	}
+	return result, nil
+}
+
 func HashPassword(password string) (string) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
@@ -21,17 +35,8 @@ func HashPassword(password string) (string) {
 
 // function to create a new user in the database
 func CreateUser(Username, Email, Password string) error {
-	stmt := "SELECT UserID FROM Users WHERE username = ?"
-	//check this
-	row := db.QueryRow(stmt, Username)
-	var uID string
-	err := row.Scan(&uID)
-	//if err, username already taken
-	if err != sql.ErrNoRows {
-		fmt.Println("Username already exists, err: ", err)
-		//myTemplate.ExecuteTemplate(w, "register.html", "This username is already taken, please choose another one.")
-		//return
-	}
+	getUser(Username)
+
 	var UserQuery string = "INSERT INTO Users(Username, Email, Password) VALUES(?,?,?)"
 
 	hashedPassword := HashPassword(Password)

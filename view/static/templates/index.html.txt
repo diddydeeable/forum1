@@ -15,7 +15,7 @@
     </div>
 <p> test </p>
     <footer>
-        <p> &copy; 2023 ForumHub > PornHub</p>
+        <p> &copy; 2023 ForumHub</p>
     </footer>
 </body>
 

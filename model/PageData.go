@@ -20,3 +20,4 @@ type Post struct {
 	CreationDate string
 
 }
+

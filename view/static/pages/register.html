@@ -1,3 +1,4 @@
+{{template "layout"}}
 {{ define "content" }}
    
  <h1> Register to our website ! </h1>
@@ -8,19 +9,17 @@
     <li>Password must be greater than 7 characters, but less than 21</li>
     <li>Password must contain an uppercase letter, lowercase letter, number, and a special character</li>
  </ul>
-    <form>  
-        <div class="container">   
-        <form action="/registerauth" method="POST">
-            <label for="email">E-mail:</label><br>
-            <input type="text" id="email" name="email"><br>
-            <label for="username">Username:</label><br>
-            <input type="text" id="username" name="username"><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Submit">
-        </form> 
-        </div>   
-    </form>     
+    <div class="container">   
+    <form action="/registerauth" method="POST">
+        <label for="email">E-mail:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Submit">
+    </form> 
+    </div>   
 {{end}}
 
 {{define "title"}}
