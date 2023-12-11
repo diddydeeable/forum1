@@ -9,7 +9,6 @@ import (
 	//"forumhub/view"
 )
 
-
 func init() {
 	model.InitDatabase()
 	fmt.Println("Success connected to database")
@@ -40,7 +39,12 @@ func pathHandler(w http.ResponseWriter, r *http.Request) {
 	case "/register":
 		controller.RegisterHandler(w, r)
 	case "/registerauth":
-		controller.RegisterAuthHandler(w,r)
+		controller.RegisterAuthHandler(w, r)
+	case "/login":
+		controller.LoginHandler(w, r)
+	case "/loginauth":
+		controller.LoginAuthHandler(w, r)
+
 	default:
 		controller.ErrorHandler(w, r, 404)
 	}
@@ -50,5 +54,4 @@ func pathHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	Server()
 	http.HandleFunc("/", pathHandler)
-
 }

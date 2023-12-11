@@ -11,9 +11,9 @@ func InitDB(database *sql.DB) {
 	db = database
 }
 
-func getUser(username string)(User, error){
+func GetUser(username string)(User, error){
 	var result User
-	stmt := "SELECT UserID FROM Users WHERE username = ?"
+	stmt := "SELECT * FROM Users WHERE username = ?"
 	
 	row := db.QueryRow(stmt, username)
 	
@@ -35,7 +35,7 @@ func HashPassword(password string) (string) {
 
 // function to create a new user in the database
 func CreateUser(Username, Email, Password string) error {
-	getUser(Username)
+	GetUser(Username)
 
 	var UserQuery string = "INSERT INTO Users(Username, Email, Password) VALUES(?,?,?)"
 

@@ -1,17 +1,13 @@
 {{ template "layout" . }}
 </head>    
 <body>    
-    <h1> Log in Form </h1>   
-    <form>  
-        <div class="container">   
-            <label>Username : </label>   
-            <input type="text" placeholder="Enter Username" name="username" required>  
-            <label>Password : </label>   
-            <input type="password" placeholder="Enter Password" name="password" required>  
-            <button type="submit">Login</button>   
-            <input type="checkbox" checked="checked"> Remember me   
-            <button type="button" class="cancelbtn"> Cancel</button>   
-            Forgot <a href="#"> password? </a>   
-        </div>   
-    </form>     
+    <h1> Log in Form </h1>  
+
+        <form action="/loginauth" method="post" id="login" class="input-group">
+            <input name="username" type="text" class="input-field" placeholder="User Name" required>
+            <input name="email" type="email" class="input-field" placeholder="Email" required>
+            <input name="password" type="password" class="input-field" placeholder="Password" required>
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+
 </body>     

@@ -23,16 +23,11 @@
                 <button type="button" class="toggle-btn" onclick="login()">Login</button>
                 <button type="button" class="toggle-btn" onclick="register()">Register</button>
             </div>
-            <form id="login" class="input-group">
-                <!-- <input type="text" class="input-field" placeholder="User Name" required> -->
-                <input type="email" class="input-field" placeholder="Email" required>
-                <input type="password" class="input-field" placeholder="Password" required>
-                <button type="submit" class="submit-btn">Log in</button>
-            </form>
-            <form action="/register" method="post" id="register" class="input-group">
+
+            <form action="/registerauth" method="post" id="register" class="input-group">
                 <input name="username" type="text" class="input-field" placeholder="User Name" required>
-                <input name="useremail" type="email" class="input-field" placeholder="Email" required>
-                <input name="userpassword" type="password" class="input-field" placeholder="Password" required>
+                <input name="email" type="email" class="input-field" placeholder="Email" required>
+                <input name="password" type="password" class="input-field" placeholder="Password" required>
                 <button type="submit" class="submit-btn">Register</button>
             </form>
         </div>
