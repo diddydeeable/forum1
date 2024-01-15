@@ -1,18 +1,28 @@
-{{ define "content" }}
-<section class="post-form">
-    <form action="/createPost" method="POST">
-        <h1>Create Post</h1>
-        <select name="category">
-            <option value="" selected disabled>Category</option>
-            <option value="Sport">Sport</option>
-            <option value="Nutrition">Nutrition</option>
-            <option value="Recovery">Recovery</option>
-            <option value="Tech">Tech</option>
-        </select>
-        <input type="text" class="title" placeholder="Title" name="title" />
-        <input type="text" class="body" placeholder="Add your thoughts here.." name="body" />
-        <input type="submit" value="Create new post" />
-    </form>
-</section>
+{{ define "threads" }}
+    <p class="lead">
+        <a href="/thread/new">Start a thread</a> or join one below!
+    </p>
+    <!-- need to add logic for sorting based on the category selected --> 
+    {{ range . }}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="lead"> <i class="fa fa-comment-o"></i>{{.Title}}</span>
+            </div>
+            <div class="panel-body">
+                Created by {{.Username}} - {{.CreationDate}} - {{.Likes}} Likes, {{.Dislikes}} Dislikes, {{.Category}} Category, {{len .Comments}} Comments.
+                <div class="pull-right">
+                    <a href="/thread/read?id={{.PostID}}">Read more</a>
+                </div>
+            </div>    
+        </div>
+    {{ end }}
 
+    <!-- Create new post form -->
+    <section class="post-form">
+        <form action="/createPost" method="POST">
+            <input type="text" class="title" placeholder="Title" name="title" />
+            <input type="text" class="body" placeholder="Add your thoughts here.." name="body" />
+            <input type="submit" value="Create new post" />
+        </form>
+    </section>
 {{ end }}

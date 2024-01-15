@@ -21,7 +21,7 @@ func Server() {
 
 	//initialize a new servemux and register the home function as the handler for the "/" URL pattern.
 	mux := http.NewServeMux()
-	mux.Handle("/view/static/", http.StripPrefix("/view/static", fs))
+	mux.Handle("/view/static/", http.StripPrefix("/view/static/", fs))
 	mux.HandleFunc("/", pathHandler)
 
 	//Start a new web server listening on port 7000

@@ -5,42 +5,35 @@ import (
 	"forumhub/model"
 )
 
-var sessionMap map[string]model.User
+var SessionMap map[string]model.User
 
 func init() {
-	sessionMap = make(map[string]model.User)
+	SessionMap = make(map[string]model.User)
 }
 
 func SetCookieToMap(uuid string, user model.User) bool {
-	_, exists := sessionMap[uuid]
+	_, exists := SessionMap[uuid]
 	if exists {
 		return false
 	}
-sessionMap[uuid]= user
+SessionMap[uuid]= user
 fmt.Println("session created")
 return true
 
 }
 
 //can you reuse this function in prev function?
-func IsAutheticated (user string)bool{
-	//traverse through the map
-  for _,value:= range sessionMap{
-
-    //check if present value is equals to userValue
-    if(value.Username == user){
-      //if same return true
-      return true
-    }
-  }
-
-  //if value not found return false
-  return false
+func IsAuthenticated(user string) bool {
+	for _, value := range SessionMap {
+		if value.Username == user {
+			return true
+		}
+	}
+	return false
 }
 
 
-func GetUserName(){
-	if IsAutheticated(user){
-		return sessionMap
-	}
+func GetUserName(name string)(model.User, bool){
+	user, exists := SessionMap[name]
+	return user, exists
 }

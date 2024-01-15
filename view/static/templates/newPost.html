@@ -1,0 +1,23 @@
+{{ define "newPostForm"}}
+<section class="createPost-form">
+    <form action="/createPost" method="POST">
+    <label for="title">Title:</label>
+    <input type="text" id="title" class="title" placeholder="Title" />
+
+    <label for="body">Body:</label>
+    <textarea id="body" class="body" placeholder="Add your thoughts here.."></textarea>
+
+    <label for="category">Category:</label>
+    <select id="category" name="category">
+        <option value="" selected disabled>Category</option>
+        <option value="Sport">Sport</option>
+        <option value="Nutrition">Nutrition</option>
+        <option value="Recovery">Recovery</option>
+        <option value="Tech">Tech</option>
+    </select>
+
+    <input type="submit" value="Create new post" />
+
+    </form>
+</section>
+{{ end }}

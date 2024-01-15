@@ -1,0 +1,6 @@
+package model
+
+func Retrieve(id int)(post Post, err error){
+post = Post{}
+err = db.QueryRow("select PostID, Username")
+}

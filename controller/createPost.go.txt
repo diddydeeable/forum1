@@ -1,0 +1,65 @@
+package controller
+
+import (
+	"forumhub/auth"
+	"forumhub/model"
+	"html/template"
+	"log"
+	"net/http"
+)
+func createPost(w http.ResponseWriter, r *http.Request) {
+	// Check if the request method is "POST"
+	if r.Method != http.MethodPost {
+		// Check if the user is not authenticated
+		if !auth.IsAuthenticated(GetUsername(r)) {
+			// Redirect to the login page
+			http.Redirect(w, r, "/login", http.StatusSeeOther)
+			return // Return to avoid further execution
+		}
+	}
+
+//extract form values
+fTitle := r.FormValue("title")
+fCategory := r.FormValue("category")
+fBody := r.FormValue("body")
+fUsername := GetUsername(r)
+
+
+// Insert the post (assuming you have an InsertPost function)
+InsertPost(fUsername, fTitle, fCategory, fBody)
+
+// Parse and execute the template
+myTemplate, err := template.ParseFiles("./view/static/templates/layout.html", "./view/static/pages/content.html")
+if err != nil {
+	log.Print("error parsing the template")
+	http.Error(w, err.Error(), http.StatusInternalServerError)
+	return
+}
+
+err = myTemplate.ExecuteTemplate(w, "layout", nil)
+
+if err != nil {
+	log.Print("error executing the template")
+	http.Error(w, err.Error(), http.StatusInternalServerError)
+	return
+}
+}
+
+
+func GetUsername(r *http.Request) model.User {
+// Retrieve the session cookie from the request
+cookie, err := r.Cookie("_cookie")
+if err != nil {
+	// Cookie not found or error retrieving it
+	return ""
+}
+
+// Get the username from the SessionMap using the cookie value
+username, exists := auth.SessionMap[cookie.Value]
+if !exists {
+	// User not found in the session map
+	return ""
+}
+
+return username
+}
