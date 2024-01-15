@@ -35,18 +35,29 @@ func Server() {
 func pathHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case "/":
-		controller.HomeHandler(w, r)
-	case "/register":
-		controller.RegisterHandler(w, r)
-	case "/registerauth":
-		controller.RegisterAuthHandler(w, r)
-	case "/login":
-		controller.LoginHandler(w, r)
-	case "/loginauth":
-		controller.LoginAuthHandler(w, r)
-
-	default:
+		controller.IndexHandler(w, r)
+	case "/err":
 		controller.ErrorHandler(w, r, 404)
+	
+	case "/login":
+		controller.LoginAuthHandler(w, r)
+	case "/logout":
+		controller.LogoutHandler(w, r)
+	case "/signup":
+		controller.SignupHandler(w, r)
+	case "/signup_account":
+		controller.SignupAccountHandler(w, r)
+	case "/authenticate":
+		controller.AuthenticateHandler(w, r)
+
+	case "/thread/new":
+		controller.NewThreadHandler(w, r)
+	case "/thread/create":
+		controller.CreateThreadHandler(w, r)
+	case "/thread/post":
+		controller.PostThreadHandler(w, r)
+	case "/thread/read":
+		controller.ReadThreadHandler(w, r)
 	}
 
 }

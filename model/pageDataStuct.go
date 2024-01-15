@@ -7,17 +7,17 @@ type PageData struct {
     // Add other fields as necessary
 }
 
-type Post struct {
-	PostID      int
-	//UserID string
-	Username string
-    Title   string
-	Catgeory string
-    Body string
-	Likes int
-	Dislikes int
-	Comments []string
-	CreationDate string
+// type Post struct {
+// 	PostID      int
+// 	//UserID string
+// 	Username string
+//     Title   string
+// 	Catgeory string
+//     Body string
+// 	Likes int
+// 	Dislikes int
+// 	Comments []string
+// 	CreationDate string
 
-}
+// }
 

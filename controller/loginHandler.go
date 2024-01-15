@@ -78,3 +78,11 @@ func CheckPasswordHash(password, hash string) bool {
 	return err == nil
 }
   
+
+func session (w http.ResponseWriter, r *http.Request) (sess data.Session, error) {
+	cookie, err := r.Cookie("_cookie")
+	if err != nil {
+		return "", err
+	}
+	return cookie.Value, nil
+}
